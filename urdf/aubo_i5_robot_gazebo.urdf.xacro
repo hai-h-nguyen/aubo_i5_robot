@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"
+       name="aubo_i5" >
+
+  <!-- common stuff -->
+  <xacro:include filename="$(find urdf_tutorial)/urdf/common.gazebo.xacro" />
+  
+  <!-- materials stuff -->
+  <xacro:include filename="$(find urdf_tutorial)/urdf/aubo.gazebo.xacro" />
+  
+  <!-- aubo_i5 -->
+  <xacro:include filename="$(find urdf_tutorial)/urdf/aubo_i5.urdf.xacro" />
+
+</robot>

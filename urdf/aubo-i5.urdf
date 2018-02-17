@@ -1,0 +1,948 @@
+<?xml version="1.0"?>
+<robot name="aubo_i5">
+
+<material name="black">
+<color rgba="0.25098 0.25098 0.25098 1"/>
+</material>
+
+<material name="orange">
+<color rgba="1 0.65098 0 1"/>
+</material>
+
+<material name="white">
+<color rgba="0.68627 0.69804 0.67451 1"/>
+</material>
+
+<material name="grey">
+<color rgba="0.2 0.2 0.2 1.0"/>
+</material>
+
+<material name="blue">
+<color rgba="0.0 0.0 0.8 1.0"/>
+</material>
+
+<material name="green">
+<color rgba="0.0 0.8 0.0 1.0"/>
+</material>
+
+<!-- MOVING_BASE_LINK -->
+<link
+    name="moving_base_Link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="125" />
+      <inertia
+        ixx="8.504167"
+        ixy="0"
+        ixz="0"
+        iyy="4.988541"
+        iyz="0"
+        izz="9.817708" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.571 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/Part1.STL" />
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+      <box size="0.8 0.55 0.42"/>
+      </geometry>
+    </collision>
+</link>
+
+  <joint name="base_to_base_joint" type="fixed">
+    <parent link="moving_base_Link"/>
+    <child link="base_Link"/>
+    <origin rpy="0 0 0" xyz="0.4 -0.275 0.42"/>
+  </joint>
+
+<!-- LEFT WHEEL -->
+<link
+    name="left_wheel_Link">
+
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="1.571 0 0" />
+      <mass
+        value="1.5" />
+      <inertia
+        ixx="0.0164583"
+        ixy="0"
+        ixz="0"
+        iyy="0.046875"
+        iyz="0"
+        izz="0.0164583" />
+    </inertial>
+
+    <visual>
+      <origin
+        xyz="0.0 0.0 0.0"
+        rpy="1.571 0 0" />
+      <geometry>
+        <cylinder length="0.1" radius="0.25"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+	<cylinder length="0.1" radius="0.25"/>
+      </geometry>
+    </collision>
+</link>
+
+  <joint name="base_to_left_wheel_joint" type="continuous">
+    <axis
+      xyz="0.0 1.0 0" />
+    <limit
+      lower="-3.05"
+      upper="3.05"
+      effort="145.0"
+      velocity="3.30" />
+    <parent link="moving_base_Link"/>
+    <child link="left_wheel_Link"/>
+    <origin rpy="0 0 0" xyz="0.3 -0.6 0.0"/>
+  </joint>
+
+<!-- STAND -->
+<link
+    name="stand_Link">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+	<cylinder length="0.25" radius="0.02"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+	<cylinder length="0.25" radius="0.05"/>
+      </geometry>
+    </collision>
+</link>
+
+  <joint name="base_to_stand_joint" type="fixed">
+    <parent link="moving_base_Link"/>
+    <child link="stand_Link"/>
+    <origin rpy="0 0 0" xyz="0.75 -0.275 -0.125"/>
+  </joint>
+
+<!-- RIGHT WHEEL -->
+<link
+    name="right_wheel_Link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="1.571 0 0" />
+      <mass
+        value="1.5" />
+      <inertia
+        ixx="0.0164583"
+        ixy="0"
+        ixz="0"
+        iyy="0.046875"
+        iyz="0"
+        izz="0.0164583" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.571 0 0" />
+      <geometry>
+	<cylinder length="0.1" radius="0.25"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+	<cylinder length="0.1" radius="0.25"/>
+      </geometry>
+    </collision>
+</link>
+
+  <joint name="base_to_right_wheel_joint" type="continuous">
+    <axis
+      xyz="0 1.0 0" />
+    <limit
+      lower="-3.05"
+      upper="3.05"
+      effort="145.0"
+      velocity="3.30" />
+    <parent link="moving_base_Link"/>
+    <child link="right_wheel_Link"/>
+    <origin rpy="0 0 0" xyz="0.3 0.05 0.0"/>
+  </joint>
+
+<!-- BASE_LINK -->
+<link
+    name="base_Link">
+    <inertial>
+      <origin
+        xyz="1.3658E-09 -0.00014692 0.01035"
+        rpy="0 0 0" />
+      <mass
+        value="4.3712" />
+      <inertia
+        ixx="0.00079449"
+        ixy="6.5327E-11"
+        ixz="-9.6404E-12"
+        iyy="0.00079389"
+        iyz="1.3115E-06"
+        izz="0.0015561" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/base_Link.STL" />
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/base_Link.STL" />
+      </geometry>
+    </collision>
+</link>
+
+
+<!-- LINK 1 -->
+  <link
+    name="shoulder_Link">
+    <inertial>
+      <origin
+        xyz="4.2237E-07 0.0063705 -0.014748"
+        rpy="0 0 0" />
+      <mass
+        value="1.4505" />
+      <inertia
+        ixx="0.0032429"
+        ixy="-5.7406E-08"
+        ixz="1.9098E-08"
+        iyy="0.0031222"
+        iyz="0.0002489"
+        izz="0.0027718" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/shoulder_Link.STL" />
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/shoulder_Link.STL" />
+      </geometry>
+    </collision>
+</link>
+
+<!-- JOINT: BASE and LINK 1 -->
+  <joint
+    name="shoulder_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.0985"
+      rpy="4.1891E-27 1.7441E-42 3.1416" />
+    <parent
+      link="base_Link" />
+    <child
+      link="shoulder_Link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.05"
+      upper="3.05"
+      effort="145.0"
+      velocity="3.30" />
+    <dynamics damping="0.0" friction="0.0"/>
+</joint>
+
+<!-- LINK &  JOINT 2 -->
+<link
+    name="s_Link">
+    <inertial>
+      <origin
+        xyz="2.75454867338328E-06 -0.00487873094196599 0.0702855243047658"
+        rpy="0 0 0" />
+      <mass
+        value="0.0933502565288893" />
+      <inertia
+        ixx="0.00011727398240241"
+        ixy="-3.14883393254388E-09"
+        ixz="1.43188514648947E-09"
+        iyy="0.000120548307556286"
+        iyz="1.4054946074709E-05"
+        izz="0.000204650958658107" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/s_Link.STL" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/s_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="s_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="shoulder_Link" />
+    <child
+      link="s_Link" />
+    <axis
+      xyz="0 0 0" />
+</joint>
+
+
+<!-- LINK &  JOINT 3 -->
+<link
+    name="upperArm_Link">
+    <inertial>
+      <origin
+        xyz="0.204 4.917E-09 -0.01129"
+        rpy="0 0 0" />
+      <mass
+        value="3.7898" />
+      <inertia
+        ixx="0.0077566"
+        ixy="3.5945E-07"
+        ixz="-2.0497E-09"
+        iyy="0.13195"
+        iyz="-2.5238E-09"
+        izz="0.13086" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/upperArm_Link.STL" />
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/upperArm_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="upperArm_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.1405 0"
+      rpy="-1.5708 -1.5708 0" />
+    <parent
+      link="shoulder_Link" />
+    <child
+      link="upperArm_Link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.05"
+      upper="3.05"
+      effort="145.0"
+      velocity="3.30" />
+    <dynamics damping="0.0" friction="0.0"/>
+</joint>
+
+<link
+    name="f1_Link">
+    <inertial>
+      <origin
+        xyz="0.204000000000002 2.13762226476002E-16 0.0702855243047657"
+        rpy="0 0 0" />
+      <mass
+        value="0.186700513057778" />
+      <inertia
+        ixx="0.000241096616529171"
+        ixy="1.13718913108594E-07"
+        ixz="-4.1181754464369E-18"
+        iyy="0.00838035188527625"
+        iyz="-2.06956333395978E-19"
+        izz="0.00855510583920424" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/f1_Link.STL" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/f1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="f1_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 2.18831867488968E-33" />
+    <parent
+      link="upperArm_Link" />
+    <child
+      link="f1_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="foreArm_Link">
+    <inertial>
+      <origin
+        xyz="0.18437 7.5869E-07 0.11576"
+        rpy="0 0 0" />
+      <mass
+        value="2.2177" />
+      <inertia
+        ixx="0.00195"
+        ixy="-4.753E-07"
+        ixz="0.0001589"
+        iyy="0.042245"
+        iyz="-1.9564E-08"
+        izz="0.042131" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/foreArm_Link.STL" />
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/foreArm_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="foreArm_joint"
+    type="revolute">
+    <origin
+      xyz="0.408 0 0"
+      rpy="-3.1416 0 2.1883E-33" />
+    <parent
+      link="upperArm_Link" />
+    <child
+      link="foreArm_Link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.05"
+      upper="3.05"
+      effort="145.0"
+      velocity="3.30" />
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <link
+    name="u_Link">
+    <inertial>
+      <origin
+        xyz="0.37977323075608 -1.22707817697109E-07 0.169252804183791"
+        rpy="0 0 0" />
+      <mass
+        value="0.0218152964018118" />
+      <inertia
+        ixx="1.43539584447989E-05"
+        ixy="-1.77714065912396E-09"
+        ixz="-1.7435191275915E-06"
+        iyy="1.42953809888318E-05"
+        iyz="5.24862609165935E-10"
+        izz="2.34588114722085E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/u_Link.STL" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/u_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="u_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 1.18505780593039E-46" />
+    <parent
+      link="foreArm_Link" />
+    <child
+      link="u_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="wrist1_Link">
+    <inertial>
+      <origin
+        xyz="5.3024E-07 0.01312 -0.0045695"
+        rpy="0 0 0" />
+      <mass
+        value="0.44685" />
+      <inertia
+        ixx="0.00048851"
+        ixy="3.1165E-09"
+        ixz="-1.4582E-09"
+        iyy="0.00036127"
+        iyz="3.9646E-05"
+        izz="0.00046417" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/wrist1_Link.STL" />
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/wrist1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist1_joint"
+    type="revolute">
+    <origin
+      xyz="0.376 0 0.019"
+      rpy="3.1416 0 1.5708" />
+    <parent
+      link="foreArm_Link" />
+    <child
+      link="wrist1_Link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.05"
+      upper="3.05"
+      effort="27.0"
+      velocity="3.96" />
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <link
+    name="w1_Link">
+    <inertial>
+      <origin
+        xyz="1.22352240257257E-07 -0.0477530913932177 0.003773230745739"
+        rpy="0 0 0" />
+      <mass
+        value="0.021815296723867" />
+      <inertia
+        ixx="1.42953809595742E-05"
+        ixy="5.24900316883739E-10"
+        ixz="1.77713720775022E-09"
+        iyy="2.34588116364367E-05"
+        iyz="1.74351913267393E-06"
+        izz="1.43539586605687E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/w1_Link.STL" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/w1_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w1_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="wrist1_Link" />
+    <child
+      link="w1_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="wrist2_Link">
+    <inertial>
+      <origin
+        xyz="-5.3024E-07 -0.01312 -0.0045695"
+        rpy="0 0 0" />
+      <mass
+        value="0.44685" />
+      <inertia
+        ixx="0.00048851"
+        ixy="3.1165E-09"
+        ixz="1.4582E-09"
+        iyy="0.00036127"
+        iyz="-3.9646E-05"
+        izz="0.00046417" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/wrist2_Link.STL" />
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/wrist2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist2_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.1025 0"
+      rpy="-1.5708 -6.1062E-16 3.1203E-16" />
+    <parent
+      link="wrist1_Link" />
+    <child
+      link="wrist2_Link" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.05"
+      upper="3.05"
+      effort="27.0"
+      velocity="3.96" />
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <link
+    name="w2_Link">
+    <inertial>
+      <origin
+        xyz="-1.22707819732575E-07 0.0477530913284884 0.00377323075609326"
+        rpy="0 0 0" />
+      <mass
+        value="0.0218152964018119" />
+      <inertia
+        ixx="1.42953809888321E-05"
+        ixy="5.24862609243349E-10"
+        ixz="-1.77714065894216E-09"
+        iyy="2.34588114722085E-05"
+        iyz="-1.74351912759145E-06"
+        izz="1.4353958444799E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/w2_Link.STL" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/w2_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="w2_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 -1.16915489293235E-32 0" />
+    <parent
+      link="wrist2_Link" />
+    <child
+      link="w2_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="wrist3_Link">
+    <inertial>
+      <origin
+        xyz="-1.0787E-10 -3.6569E-05 -0.018611"
+        rpy="0 0 0" />
+      <mass
+        value="0.13571" />
+      <inertia
+        ixx="5.9222E-05"
+        ixy="3.4848E-13"
+        ixz="1.9939E-13"
+        iyy="5.9429E-05"
+        iyz="-8.8081E-08"
+        izz="9.5238E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/wrist3_Link.STL" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://urdf_tutorial/meshes/wrist3_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist3_joint"
+    type="revolute">
+    <origin
+      xyz="0 -0.094 0"
+      rpy="1.5708 3.1203E-16 0" />
+    <parent
+      link="wrist2_Link" />
+    <child
+      link="wrist3_Link" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-3.05"
+      upper="3.05"
+      effort="27.0"
+      velocity="3.96" />
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+  <link 
+     name="ee_Link">
+     <collision>
+       <geometry>
+          <box size="0.01 0.01 0.01"/>
+       </geometry>
+       <origin 
+          rpy="0 0 0" 
+          xyz="0 0 0.05"/>
+     </collision>
+  </link>
+  <joint 
+     name="ee_fixed_joint" 
+     type="fixed">
+     <parent 
+	link="wrist3_Link" />
+     <child 
+	link = "ee_Link" />
+     <origin 
+        xyz="0.0 0.0 0.0" 
+        rpy="0.0 0.0 0.0" />
+  </joint>
+
+  <joint name="left_gripper_joint" type="revolute">
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="0.0" upper="0.548" velocity="0.5"/>
+    <origin rpy="-1.571 -1.571 0" xyz="0 0 0"/>
+    <parent link="wrist3_Link"/>
+    <child link="left_gripper_link"/>
+  </joint>
+
+  <link name="left_gripper_link">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger.dae"/>
+      </geometry>
+      <origin rpy="0.0 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <link name="left_tip">
+    <visual>
+      <origin rpy="0.0 0 0" xyz="0.09137 0.00495 0"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger_tip.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger_tip.dae"/>
+      </geometry>
+      <origin rpy="0.0 0 0" xyz="0.09137 0.00495 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="right_gripper_joint" type="revolute">
+    <axis xyz="0 0 -1"/>
+    <limit effort="1000.0" lower="-0.548" upper="0.0" velocity="0.5"/>
+    <origin rpy="1.571 -1.571 0" xyz="0 0 0"/>
+    <parent link="wrist3_Link"/>
+    <child link="right_gripper_link"/>
+  </joint>
+
+  <link name="right_gripper_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger.dae"/>
+      </geometry>
+      <origin rpy="-3.1415 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+<link name="right_tip">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.09137 0.00495 0"/>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger_tip.dae"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://urdf_tutorial/meshes/l_finger_tip.dae"/>
+      </geometry>
+      <origin rpy="-3.1415 0 0" xyz="0.09137 0.00495 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <joint name="right_tip_joint" type="fixed">
+    <parent link="right_gripper_link"/>
+    <child link="right_tip"/>
+  </joint>
+
+
+  <joint name="left_tip_joint" type="fixed">
+    <parent link="left_gripper_link"/>
+    <child link="left_tip"/>
+  </joint>
+
+</robot>
