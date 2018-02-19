@@ -41,6 +41,26 @@
   </joint>
 </transmission>	
 
+<transmission name="left_2wheel_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <actuator name="left_2wheel_motor">
+	<mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+  <joint name="base_to_left_2wheel_joint">
+	<hardwareInterface>VelocityJointInterface</hardwareInterface>
+  </joint>
+</transmission>	
+
+<transmission name="right_2wheel_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <actuator name="right_2wheel_motor">
+	<mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+  <joint name="base_to_right_2wheel_joint">
+	<hardwareInterface>VelocityJointInterface</hardwareInterface>
+  </joint>
+</transmission>	
+
 <transmission name="shoulder_trans">
   <type>transmission_interface/SimpleTransmission</type>
   <joint name="shoulder_joint">

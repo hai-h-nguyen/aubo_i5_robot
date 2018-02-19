@@ -1,4 +1,4 @@
-<?xml version="1."?>
+<?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 	
 	 <!--stand_Link-->
@@ -17,6 +17,24 @@
 
 	 <!--right_wheel_Link-->
      <gazebo reference = "right_wheel_Link">
+	 <mu1 value="200.0"/>
+     <mu2 value="100.0"/>
+     <kp value="10000000.0" />
+     <kd value="1.0" />
+	 <material>Gazebo/Blue</material>
+     </gazebo>
+
+	 <!--left_wheel_Link-->
+     <gazebo reference = "left_2wheel_Link">
+	  <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+	  <material>Gazebo/Blue</material>
+     </gazebo>
+
+	 <!--right_wheel_Link-->
+     <gazebo reference = "right_2wheel_Link">
 	 <mu1 value="200.0"/>
      <mu2 value="100.0"/>
      <kp value="10000000.0" />

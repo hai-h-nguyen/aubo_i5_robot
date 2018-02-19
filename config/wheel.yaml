@@ -1,11 +1,11 @@
 wheel_controller:
   type: diff_drive_controller/DiffDriveController
-  publish_rate: 20
+  publish_rate: 50
 
-  left_wheel: 'base_to_left_wheel_joint'
-  right_wheel: 'base_to_right_wheel_joint'
+  left_wheel: ['base_to_left_wheel_joint', 'base_to_left_2wheel_joint']
+  right_wheel: ['base_to_right_wheel_joint', 'base_to_right_2wheel_joint']
 
-  wheel_separation: 0.44
+  wheel_separation: 0.75
 
   # Odometry covariances for the encoder output of the robot. These values should
   # be tuned to your robot's sample odometry data, but these values are a good place
@@ -20,9 +20,9 @@ wheel_controller:
   linear:
     x:
       has_velocity_limits    : true
-      max_velocity           : 0.2   
+      max_velocity           : 1.0   
       has_acceleration_limits: true
-      max_acceleration       : 0.6   
+      max_acceleration       : 1.2   
   angular:
     z:
       has_velocity_limits    : true

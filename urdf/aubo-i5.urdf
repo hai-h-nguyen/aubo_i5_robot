@@ -119,34 +119,6 @@
     <origin rpy="0 0 0" xyz="0.3 -0.6 0.0"/>
   </joint>
 
-<!-- STAND -->
-<link
-    name="stand_Link">
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-	<cylinder length="0.25" radius="0.02"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-	<cylinder length="0.25" radius="0.05"/>
-      </geometry>
-    </collision>
-</link>
-
-  <joint name="base_to_stand_joint" type="fixed">
-    <parent link="moving_base_Link"/>
-    <child link="stand_Link"/>
-    <origin rpy="0 0 0" xyz="0.75 -0.275 -0.125"/>
-  </joint>
-
 <!-- RIGHT WHEEL -->
 <link
     name="right_wheel_Link">
