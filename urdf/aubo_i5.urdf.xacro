@@ -874,28 +874,7 @@
       velocity="3.96" />
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
-  <link 
-     name="ee_Link">
-     <collision>
-       <geometry>
-          <box size="0.01 0.01 0.01"/>
-       </geometry>
-       <origin 
-          rpy="0 0 0" 
-          xyz="0 0 0.05"/>
-     </collision>
-  </link>
-  <joint 
-     name="ee_fixed_joint" 
-     type="fixed">
-     <parent 
-	link="wrist3_Link" />
-     <child 
-	link = "ee_Link" />
-     <origin 
-        xyz="0.0 0.0 0.0" 
-        rpy="0.0 0.0 0.0" />
-  </joint>
+
 
   <joint name="left_gripper_joint" type="revolute">
     <axis xyz="0 0 1"/>
@@ -919,8 +898,8 @@
       <origin rpy="0.0 0 0" xyz="0 0 0"/>
     </collision>
     <inertial>
-      <mass value="0.05"/>
-      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      <mass value="0.005"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
     </inertial>
   </link>
 
@@ -938,8 +917,8 @@
       <origin rpy="0.0 0 0" xyz="0.09137 0.00495 0"/>
     </collision>
     <inertial>
-      <mass value="0.05"/>
-      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      <mass value="0.005"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
     </inertial>
   </link>
 
@@ -965,8 +944,8 @@
       <origin rpy="-3.1415 0 0" xyz="0 0 0"/>
     </collision>
     <inertial>
-      <mass value="0.05"/>
-      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      <mass value="0.005"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
     </inertial>
   </link>
 
@@ -984,8 +963,8 @@
       <origin rpy="-3.1415 0 0" xyz="0.09137 0.00495 0"/>
     </collision>
     <inertial>
-      <mass value="0.05"/>
-      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      <mass value="0.005"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
     </inertial>
   </link>
 

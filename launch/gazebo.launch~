@@ -1,0 +1,43 @@
+<launch>
+  <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+  <arg name="model" />
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find urdf_tutorial)/urdf/aubo_i5_robot_gazebo.urdf.xacro'" />
+
+  <rosparam file="$(find urdf_tutorial)/config/joints.yaml" command="load"/>
+  <rosparam file="$(find urdf_tutorial)/config/gripper.yaml" command="load"/>
+  <rosparam file="$(find urdf_tutorial)/config/wheel.yaml" command="load"/>
+  
+    <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+	output="screen" args="joint_state_controller wheel_controller wrist1_joint_controller wrist2_joint_controller wrist3_joint_controller foreArm_joint_controller upperArm_joint_controller shoulder_joint_controller"/>
+	
+
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        args="-z 1.0 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher"  name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+  
+  <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+    <param name="default_topic" value="/wheel_controller/cmd_vel"/>
+  </node>
+
+</launch>
+
